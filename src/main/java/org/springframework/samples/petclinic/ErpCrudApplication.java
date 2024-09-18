@@ -18,13 +18,26 @@ package org.springframework.samples.petclinic;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportRuntimeHints;
+import org.springframework.http.MediaType;
+import org.springframework.security.config.Customizer;
+import org.springframework.security.config.annotation.web.builders.HttpSecurity;
+import org.springframework.security.core.userdetails.User;
+import org.springframework.security.provisioning.InMemoryUserDetailsManager;
+import org.springframework.security.web.SecurityFilterChain;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
+
+import java.security.Principal;
+import java.util.Map;
 
 /**
  * PetClinic Spring Boot Application.
  *
  * @author Dave Syer
- *
+ *requestMatchers("/").hasAnyRole("USER")
  */
 @SpringBootApplication
 @ImportRuntimeHints(PetClinicRuntimeHints.class)
@@ -33,5 +46,5 @@ public class ErpCrudApplication {
 	public static void main(String[] args) {
 		SpringApplication.run(ErpCrudApplication.class, args);
 	}
-
 }
+
