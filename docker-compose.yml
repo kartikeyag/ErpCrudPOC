@@ -14,12 +14,21 @@ services:
     profiles:
       - mysql
   postgres:
-    image: postgres:16.3
+    image: pgvector/pgvector:pg16
     ports:
       - "5432:5432"
     environment:
       - POSTGRES_PASSWORD=petclinic
       - POSTGRES_USER=petclinic
       - POSTGRES_DB=petclinic
+    profiles:
+      - postgres
+  pgadmin:
+    image: dpage/pgadmin4
+    ports:
+      - "8888:80"
+    environment:
+        PGADMIN_DEFAULT_EMAIL: pgadmin@domain-name.com
+        PGADMIN_DEFAULT_PASSWORD: pgadmin
     profiles:
       - postgres
