@@ -16,14 +16,10 @@
 
 package org.springframework.samples.erpcrud;
 
-import org.springframework.ai.chat.client.ChatClient;
 import org.springframework.ai.document.Document;
-import org.springframework.ai.ollama.OllamaEmbeddingModel;
 import org.springframework.ai.transformer.splitter.TokenTextSplitter;
-import org.springframework.ai.vectorstore.PgVectorStore;
 import org.springframework.ai.vectorstore.SearchRequest;
 import org.springframework.ai.vectorstore.VectorStore;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -31,7 +27,6 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportRuntimeHints;
 import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.DataClassRowMapper;
-import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.simple.JdbcClient;
 
 import java.util.List;
@@ -71,7 +66,7 @@ public class ErpCrudApplication {
 			if (this.ingest) {
 
 				products.parallelStream().forEach(product -> {
-					var document = new Document(product.first_name() + " " + product.last_name(),
+					var document = new Document("Name is " + product.first_name() + " " + product.last_name()+ " Address is " + product.address()+" Telephone is "+product.telephone(),
 							Map.of("phone", product.telephone(), "id", product.id(), "firstname", product.first_name(),
 									"lastname", product.last_name(), "address", product.address()));
 

@@ -4,3 +4,7 @@ https://medium.com/@vishal.sharma./run-postgresql-and-pgadmin-using-docker-compo
 
 -Dspring.profiles.active=default
 -Dspring.profiles.active=postgres
+
+select * from vector_store;
+select count(*) from vector_store;
+delete from vector_store;

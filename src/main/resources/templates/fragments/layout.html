@@ -55,6 +55,11 @@
             <span>Find customers</span>
           </li>
 
+          <li th:replace="~{::menuItem ('/chat','owners','find customers','search','LLM Agent Chat ')}">
+            <span class="fa fa-search" aria-hidden="true"></span>
+            <span>LLM Agent Chat</span>
+          </li>
+
           <li th:replace="~{::menuItem ('/vets.html','vets','veterinarians','th-list','QUERIES')}">
             <span class="fa fa-th-list" aria-hidden="true"></span>
             <span>Veterinarians</span>
@@ -65,6 +70,16 @@
             <span class="fa exclamation-triangle" aria-hidden="true"></span>
             <span>Error</span>
           </li>
+<!--
+          <div class="col-4">
+            <a id="logout-link" th:href="@{/logout}">Logout</a>
+          </div>-->
+          <li th:replace="~{::menuItem ('/logout','owners','find customers','search','Logout ')}">
+            <span class="fa fa-search" aria-hidden="true"></span>
+            <span>Logout</span>
+          </li>
+
+
 
         </ul>
       </div>
