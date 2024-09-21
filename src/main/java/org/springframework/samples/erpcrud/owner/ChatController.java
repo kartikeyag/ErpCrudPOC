@@ -32,6 +32,7 @@ public class ChatController {
     @PostMapping
     public String postChatMessage(ChatForm chatForm, Model model, Principal principal) {
         String conversationId = getConversationId(chatForm);
+        if(principal.getName()!=null)
         chatForm.setUsername(principal.getName());
         this.messageService.addMessage(chatForm);
         String chatResponse = chatGeneratorService.generate(chatForm.getMessageText(),conversationId);
