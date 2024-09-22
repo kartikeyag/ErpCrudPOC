@@ -40,7 +40,7 @@ import java.util.Map;
  * #https://spring.io/guides/gs/securing-web
  * https://medium.com/@vishal.sharma./run-postgresql-and-pgadmin-using-docker-compose-34120618bcf9
  */
-@SpringBootApplication
+@SpringBootApplication(scanBasePackages = "org.springframework.samples")
 @ImportRuntimeHints(PetClinicRuntimeHints.class)
 public class ErpCrudApplication {
 
@@ -61,6 +61,7 @@ public class ErpCrudApplication {
 	ApplicationRunner demo(TokenTextSplitter tokenTextSplitter, JdbcClient db, VectorStore vectorStore) {
 		return args -> {
 
+			db.sql("delete from vector_store").update();
 			var products = db.sql("select * from owners").query(new DataClassRowMapper<>(Product.class)).list();
 
 			if (this.ingest) {

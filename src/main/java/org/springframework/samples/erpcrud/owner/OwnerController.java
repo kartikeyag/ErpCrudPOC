@@ -15,26 +15,23 @@
  */
 package org.springframework.samples.erpcrud.owner;
 
-import java.util.List;
-import java.util.Map;
-
+import jakarta.validation.Valid;
+import org.springframework.context.ApplicationEventPublisher;
+import org.springframework.context.ApplicationEventPublisherAware;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
+import org.springframework.samples.erpcrud.event.AddCustomerEvent;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.WebDataBinder;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.InitBinder;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.servlet.ModelAndView;
-
-import jakarta.validation.Valid;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import java.util.List;
+import java.util.Map;
 
 /**
  * @author Juergen Hoeller
@@ -43,7 +40,14 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
  * @author Michael Isvy
  */
 @Controller
-class OwnerController {
+class OwnerController implements ApplicationEventPublisherAware {
+
+	ApplicationEventPublisher applicationEventPublisher;
+
+	@Override
+	public void setApplicationEventPublisher(ApplicationEventPublisher applicationEventPublisher) {
+		this.applicationEventPublisher=applicationEventPublisher;
+	}
 
 	private static final String VIEWS_OWNER_CREATE_OR_UPDATE_FORM = "owners/createOrUpdateOwnerForm";
 
@@ -78,6 +82,10 @@ class OwnerController {
 		}
 
 		this.owners.save(owner);
+		if(owner !=null){
+			applicationEventPublisher.publishEvent(new AddCustomerEvent(owner));
+		}
+
 		redirectAttributes.addFlashAttribute("message", "New Owner Created");
 		return "redirect:/owners/" + owner.getId();
 	}
@@ -163,5 +171,6 @@ class OwnerController {
 		mav.addObject(owner);
 		return mav;
 	}
+
 
 }

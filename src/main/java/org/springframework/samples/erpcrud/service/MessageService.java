@@ -1,8 +1,8 @@
 package org.springframework.samples.erpcrud.service;
 
 
-import org.springframework.samples.erpcrud.model.ChatForm;
-import org.springframework.samples.erpcrud.model.ChatMessage;
+import org.springframework.samples.chat.model.ChatForm;
+import org.springframework.samples.chat.model.ChatMessage;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;

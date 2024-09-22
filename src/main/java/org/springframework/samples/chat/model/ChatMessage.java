@@ -1,4 +1,4 @@
-package org.springframework.samples.erpcrud.model;
+package org.springframework.samples.chat.model;
 
 import lombok.Getter;
 import lombok.Setter;

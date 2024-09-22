@@ -1,6 +1,7 @@
 https://github.com/spring-tips/vector-databases/tree/main
 https://spring.io/guides/gs/securing-web
 https://medium.com/@vishal.sharma./run-postgresql-and-pgadmin-using-docker-compose-34120618bcf9
+https://howtodoinjava.com/spring-core/how-to-publish-and-listen-application-events-in-spring/¡
 
 -Dspring.profiles.active=default
 -Dspring.profiles.active=postgres

@@ -1,8 +1,8 @@
-package org.springframework.samples.erpcrud.owner;
+package org.springframework.samples.chat.controller;
 
 import lombok.RequiredArgsConstructor;
-import org.springframework.samples.erpcrud.model.ChatForm;
-import org.springframework.samples.erpcrud.service.ChatGeneratorService;
+import org.springframework.samples.chat.model.ChatForm;
+import org.springframework.samples.chat.service.ChatGeneratorService;
 import org.springframework.samples.erpcrud.service.MessageService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
